@@ -1,2 +1,24 @@
-<h1>Meals#index</h1>
-<p>Find me in app/views/meals/index.html.erb</p>
+<div class="main">
+  <div class="main_upper">
+    <div class="formula">目標カロリー　ー　現在のカロリー　＝　残りの摂取カロリー</div>
+  </div>
+  <div class="main_middle">
+    <div class="main_middle_board"></div>
+    <div class="main_middle_dashboard"><%=image_tag("Circle.png")%></div>
+  </div>
+  <div class="main_beneath">
+    <div class="calories_board">
+    <table border="1">
+    <tr>
+      <th class="calories_board__right">食品名</th>
+      <th class="calories_board__left">カロリー</th>
+    </tr>
+    <tr>
+      <td class="calories_board__right_content">昆布</td>
+      <td class="calories_board__left_content">10kcal</td>
+    </tr>
+    </table>
+    </div>
+  </div>
+</div>
+
