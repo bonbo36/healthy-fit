@@ -1,10 +1,13 @@
 class MealsController < ApplicationController
   def index
     @meals = Meal.all
+    @meal = Meal.last
+    @today_meals = Meal.where('DATE(created_at) = ?', Date.today)
+    @todays_calories = @today_meals.sum {|meal| meal.fat * 9 + meal.protein * 4 + meal.carbohydrates * 4 }
   end
 
   def new
-    @meal = Meal.last
+    @meal = Meal.new
   end
 
     def create
