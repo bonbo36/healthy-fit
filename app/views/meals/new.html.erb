@@ -1,21 +1,19 @@
-<h1>カロリー計算アプリ</h1>
+<h1>食品の登録</h1>
 
 <%= form_with model: @meal, local: true do|f|%>
-  <%= f.label :food_name, "食品名:" %>
+  <%= f.label :food_name, "食品名" %>
   <%= f.text_field :food_name %><br>
 
-  <%= f.label :protein, "タンパク質:" %>
+  <%= f.label :protein, "タンパク質" %>
   <%= f.text_field :protein %><br>
 
-  <%= f.label :fat, "脂質:" %>
+  <%= f.label :fat, "脂質" %>
   <%= f.text_field :fat %><br>
 
-  <%= f.label :carbohydrates, "炭水化物:" %>
+  <%= f.label :carbohydrates, "炭水化物" %>
   <%= f.text_field :carbohydrates %><br>
 
-  <%= submit_tag'登録する' %>
+  <%= submit_tag'Create Meals' %>
 <% end %>
 
-<h2>合計のカロリー</h2>
-<%= (@meal.fat * 9 + @meal.protein * 4 + @meal.carbohydrates * 4).round %>
 

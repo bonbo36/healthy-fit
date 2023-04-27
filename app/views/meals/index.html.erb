@@ -1,6 +1,34 @@
 <div class="main">
   <div class="main_upper">
-    <div class="formula">目標カロリー　ー　現在のカロリー　＝　残りの摂取カロリー</div>
+    <div class="formula">
+    <label for="goal-calories">目標カロリー：</label>
+<input type="number" id="goal-calories" name="goal_calories">
+<label for="current-calories">現在のカロリー：</label>
+<input type="number" id="current-calories" name="current_calories">
+<p>残りの摂取カロリー：<span id="remaining-calories"></span></p>
+<script>
+  // 目標カロリーと現在のカロリーのinput要素を取得する
+  const goalCaloriesInput = document.getElementById('goal-calories');
+  const currentCaloriesInput = document.getElementById('current-calories');
+  // 残りの摂取カロリーを表示する要素を取得する
+  const remainingCaloriesElement = document.getElementById('remaining-calories');
+  // 目標カロリーと現在のカロリーの値が変更されたときに呼び出される関数
+  function calculateRemainingCalories() {
+    // 目標カロリーと現在のカロリーを取得する
+    const goalCalories = Number(goalCaloriesInput.value);
+    const currentCalories = Number(currentCaloriesInput.value);
+    // 残りの摂取カロリーを計算する
+    const remainingCalories = goalCalories - currentCalories;
+    // 残りの摂取カロリーを表示する
+    remainingCaloriesElement.textContent = remainingCalories;
+  }
+  // 目標カロリーと現在のカロリーの値が変更されたときに計算するように設定する
+  goalCaloriesInput.addEventListener('change', calculateRemainingCalories);
+  currentCaloriesInput.addEventListener('change', calculateRemainingCalories);
+  // 初期値で残りの摂取カロリーを計算する
+  calculateRemainingCalories();
+</script>
+</div>
   </div>
   <div class="main_middle">
     <div class="main_middle_board"></div>
@@ -8,19 +36,28 @@
   </div>
   <div class="main_beneath">
     <div class="calories_board">
+<h2>今日食べたもの</h2>
     <table border="1">
     <tr>
       <th class="calories_board__right">食品名</th>
+      <th>タンパク質</th>
+      <th>脂質</th>
+      <th>炭水化物</th>
       <th class="calories_board__left">カロリー</th>
     </tr>
+    <% @today_meals.each do |today_meal| %>
     <tr>
-      <td class="calories_board__right_content">昆布</td>
-      <td class="calories_board__left_content">10kcal</td>
+      <td class="calories_board__right_content"><%= today_meal.food_name %></td>
+      <td><%= today_meal.protein%></td>
+      <td><%= today_meal.fat %></td>
+      <td><%= today_meal.carbohydrates %></td>
+      <td class="calories_board__left_content"><%=(today_meal.fat * 9 + today_meal.protein * 4 + today_meal.carbohydrates * 4).round %></td>
     </tr>
+    <% end %>
     </table>
 
-
-  <h2>計算結果</h2>
+<h2>今日の合計のカロリー</h2>
+<%=@todays_calories %>
 
   
     </div>
